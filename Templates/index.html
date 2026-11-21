@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Diary</title>
+    <style>
+        body {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        h2, h3, p, label, li, strong, small {
+            color: #ffffff !important;
+        }
+
+        a {
+            color: #93c5fd !important;
+        }
+
+        input, textarea {
+            background-color: #141414 !important;
+            color: #ffffff !important;
+            border: 1px solid #333333 !important;
+            padding: 8px;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #9ca3af !important;
+        }
+
+        hr {
+            border-color: #262626 !important;
+        }
+    </style>
+</head>
+<body>
+    <h2>Digital Diary</h2>
+    <p><a href="/logout" style="color: #93c5fd;">Logout</a></p>
+
+    <form method="POST">
+        <input type="text" name="title" placeholder="Note Title" required><br><br>
+        <textarea name="content" placeholder="Write your note here..." rows="5" cols="40" required></textarea><br><br>
+        <button type="submit" style="padding: 10px 20px; background: green; color: white; border: none;">Save Note</button>
+    </form>
+
+    <hr>
+    <h3>All Notes</h3>
+    <ul>
+        {% for note in notes %}
+            <li style="margin-bottom: 15px;">
+                <strong>{{ note[1] }}</strong> <small>({{ note[3] }})</small><br>
+                {{ note[2] }}<br>
+                <a href="/delete/{{ note[0] }}" style="color: #f87171;">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
